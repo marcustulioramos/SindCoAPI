@@ -66,8 +66,20 @@ namespace SindCoAPI.Controllers
             {
                 return BadRequest("No record found.");
             }
+            
             entity.Name = complex.Name;
+            entity.CreatedById = complex.CreatedById;
             entity.Status = complex.Status;
+            entity.StatusById = complex.StatusById;
+            entity.StatusDate = complex.StatusDate;
+            entity.AddressLine1 = complex.AddressLine1;
+            entity.AddressLine2 = complex.AddressLine2;
+            entity.City = complex.City;
+            entity.County = complex.County;
+            entity.Country = complex.Country;
+            entity.PostCode = complex.PostCode;
+            entity.Telephone = complex.Telephone;
+            entity.Email = complex.Email;
             try
             {
                 sindcoDbContext.SaveChanges();
@@ -95,8 +107,22 @@ namespace SindCoAPI.Controllers
                 return BadRequest("No record found.");
             }
             sindcoDbContext.Complexes.Remove(complex);
-            sindcoDbContext.SaveChanges();
+            try
+            {
+                sindcoDbContext.SaveChanges();
             return Ok("The complex was deleted successfully.");
+        }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+                return BadRequest("The complex was not deleted.");
+            }
         }
     }
 }
