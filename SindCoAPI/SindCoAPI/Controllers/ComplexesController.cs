@@ -43,6 +43,7 @@ namespace SindCoAPI.Controllers
             try
             {
                 sindcoDbContext.SaveChanges();
+                return Ok("The complex was created successfully.");
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)
             {
@@ -53,8 +54,8 @@ namespace SindCoAPI.Controllers
                         System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
                     }
                 }
+                return BadRequest("The complex was not created.");
             }
-            return Ok("The complex was created successfully.");
         }
 
         // PUT: api/Complex/5
@@ -70,6 +71,7 @@ namespace SindCoAPI.Controllers
             try
             {
                 sindcoDbContext.SaveChanges();
+                return Ok("The complex was edited successfully.");
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)
             {
@@ -80,9 +82,8 @@ namespace SindCoAPI.Controllers
                         System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
                     }
                 }
+                return BadRequest("The complex was not edited.");
             }
-            return Ok("The complex was edited successfully.");
-
         }
 
         // DELETE: api/Complex/5
