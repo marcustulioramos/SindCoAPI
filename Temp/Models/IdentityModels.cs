@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -30,11 +29,5 @@ namespace SindCoAPI.Models
         {
             return new ApplicationDbContext();
         }
-
-        public DbSet<Complex> Complexes { get; set; }
-        public DbSet<Block> Blocks { get; set; }
-        public DbSet<Building> Buildings { get; set; }
-        public DbSet<Apartment> Apartments { get; set; }
-
     }
 }
