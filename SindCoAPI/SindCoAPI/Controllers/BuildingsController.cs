@@ -8,33 +8,33 @@ using SindCoAPI.Models;
 
 namespace SindCoAPI.Controllers
 {
-    public class ComplexesController : ApiController
+    public class BuildingsController : ApiController
     {
         ApplicationDbContext sindcoDbContext = new ApplicationDbContext();
 
-        // GET: api/Complex
+        // GET: api/Buildings
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Complex/5
+        // GET: api/Buildings/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Complex
+        // POST: api/Buildings
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Complex/5
+        // PUT: api/Buildings/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Complex/5
+        // DELETE: api/Buildings/5
         public void Delete(int id)
         {
         }

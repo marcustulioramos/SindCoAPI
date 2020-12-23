@@ -4,13 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using SindCoAPI.Models;
+using SindCoAPI.Data;
 
 namespace SindCoAPI.Controllers
 {
     public class ComplexesController : ApiController
     {
-        ApplicationDbContext sindcoDbContext = new ApplicationDbContext();
+        SindcoDbContext sindcoDbContext = new SindcoDbContext();
 
         // GET: api/Complex
         public IEnumerable<string> Get()

@@ -8,12 +8,17 @@ using SindCoAPI.Models;
 
 namespace SindCoAPI.Data
 {
-    public class SindcoDbContext : DbContext
+    public class SindcoDbContext : IdentityDbContext
     {
+        public SindcoDbContext()
+            : base("DefaultConnection")
+        {
+        }
+
         public DbSet<Complex> Complexes { get; set; }
-        public DbSet<Block> Blocks { get; set; }
+        public DbSet<Block > Blocks { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Apartment> Apartments { get; set; }
-
+        
     }
 }

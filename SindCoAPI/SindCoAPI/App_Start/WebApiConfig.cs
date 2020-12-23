@@ -27,7 +27,6 @@ namespace SindCoAPI
             );
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-
         }
     }
 }
