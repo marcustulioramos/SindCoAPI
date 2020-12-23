@@ -8,35 +8,40 @@ using SindCoAPI.Models;
 
 namespace SindCoAPI.Controllers
 {
+    [Authorize]
     public class ApartmentsController : ApiController
     {
         ApplicationDbContext sindcoDbContext = new ApplicationDbContext();
 
         // GET: api/Apartments
-        public IEnumerable<string> Get()
+        public IHttpActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var apartments = sindcoDbContext.Apartments;
+            return Ok(apartments);
         }
 
         // GET: api/Apartments/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            return Ok();
         }
 
         // POST: api/Apartments
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]string value)
         {
+            return Ok();
         }
 
         // PUT: api/Apartments/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, [FromBody]string value)
         {
+            return Ok();
         }
 
         // DELETE: api/Apartments/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            return Ok();
         }
     }
 }
