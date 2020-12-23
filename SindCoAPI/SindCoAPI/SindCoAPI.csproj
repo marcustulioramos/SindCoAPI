@@ -219,6 +219,18 @@
     <Compile Include="Migrations\202012231643140_initialMigration.Designer.cs">
       <DependentUpon>202012231643140_initialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012231954085_addresline2NotRequired.cs" />
+    <Compile Include="Migrations\202012231954085_addresline2NotRequired.Designer.cs">
+      <DependentUpon>202012231954085_addresline2NotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012231956512_CountyNotRequired.cs" />
+    <Compile Include="Migrations\202012231956512_CountyNotRequired.Designer.cs">
+      <DependentUpon>202012231956512_CountyNotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012232001015_byIdToString.cs" />
+    <Compile Include="Migrations\202012232001015_byIdToString.Designer.cs">
+      <DependentUpon>202012232001015_byIdToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -323,6 +335,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012231643140_initialMigration.resx">
       <DependentUpon>202012231643140_initialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012231954085_addresline2NotRequired.resx">
+      <DependentUpon>202012231954085_addresline2NotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012231956512_CountyNotRequired.resx">
+      <DependentUpon>202012231956512_CountyNotRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012232001015_byIdToString.resx">
+      <DependentUpon>202012232001015_byIdToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

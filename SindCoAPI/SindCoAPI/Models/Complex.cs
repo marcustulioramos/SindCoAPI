@@ -16,20 +16,20 @@ namespace SindCoAPI.Models
         [DataType(DataType.Time)]
         public DateTime CreatedAt { get; set; }
         [Required]
-        public int CreatedById { get; set; }
+        public string CreatedById { get; set; }
         [Required]
         public int Status { get; set; }
         [Required]
-        public int StatusById { get; set; }
+        public string StatusById { get; set; }
         [Required]
         public DateTime StatusDate { get; set; }
         [Required]
         public string AddressLine1 { get; set; }
-        [Required]
+        
         public string AddressLine2 { get; set; }
         [Required]
         public string City { get; set; }
-        [Required]
+        
         public string County { get; set; }
         [Required]
         public string Country { get; set; }
