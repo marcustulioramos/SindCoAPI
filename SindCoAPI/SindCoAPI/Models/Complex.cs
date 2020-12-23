@@ -9,7 +9,8 @@ namespace SindCoAPI.Models
     public class Complex
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter name")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
         [Required]
         [DataType(DataType.Time)]

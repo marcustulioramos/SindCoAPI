@@ -40,7 +40,20 @@ namespace SindCoAPI.Controllers
         public IHttpActionResult Post([FromBody]Complex complex)
         {
             sindcoDbContext.Complexes.Add(complex);
-            sindcoDbContext.SaveChanges();
+            try
+            {
+                sindcoDbContext.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
             return Ok("The complex was created successfully.");
         }
 
@@ -54,7 +67,20 @@ namespace SindCoAPI.Controllers
             }
             entity.Name = complex.Name;
             entity.Status = complex.Status;
-            sindcoDbContext.SaveChanges();
+            try
+            {
+                sindcoDbContext.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
             return Ok("The complex was edited successfully.");
 
         }
