@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using SindCoAPI.Models;
+using WebApi.OutputCache.V2;
 
 namespace SindCoAPI.Controllers
 {
@@ -15,6 +16,8 @@ namespace SindCoAPI.Controllers
         ApplicationDbContext sindcoDbContext = new ApplicationDbContext();
 
         // GET: api/Complex
+        [CacheOutput(ClientTimeSpan = 60)]
+        [HttpGet]
         public IHttpActionResult Get()
         {
             var complexes = sindcoDbContext.Complexes;
@@ -26,6 +29,8 @@ namespace SindCoAPI.Controllers
         }
 
         // GET: api/Complex/5
+        [CacheOutput(ClientTimeSpan = 60)]
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             var complex = sindcoDbContext.Complexes.Find(id);
@@ -37,6 +42,7 @@ namespace SindCoAPI.Controllers
         }
 
         // POST: api/Complex
+        [HttpPost]
         public IHttpActionResult Post([FromBody]Complex complex)
         {
             sindcoDbContext.Complexes.Add(complex);
@@ -59,6 +65,7 @@ namespace SindCoAPI.Controllers
         }
 
         // PUT: api/Complex/5
+        [HttpPut]
         public IHttpActionResult Put(int id, [FromBody] Complex complex)
         {
             var entity = sindcoDbContext.Complexes.FirstOrDefault(x => x.Id == id);
@@ -99,6 +106,7 @@ namespace SindCoAPI.Controllers
         }
 
         // DELETE: api/Complex/5
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
             var complex = sindcoDbContext.Complexes.Find(id);
