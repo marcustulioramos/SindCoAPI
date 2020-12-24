@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using SindCoAPI.Models;
+using WebApi.OutputCache.V2;
 
 namespace SindCoAPI.Controllers
 {
@@ -14,35 +15,121 @@ namespace SindCoAPI.Controllers
     {
         ApplicationDbContext sindcoDbContext = new ApplicationDbContext();
 
-        // GET: api/Buildings
+        // GET: api/Complex
+        [CacheOutput(ClientTimeSpan = 60)]
+        [HttpGet]
         public IHttpActionResult Get()
         {
             var buildings = sindcoDbContext.Buildings;
+            if (buildings == null)
+            {
+                return BadRequest("No record found.");
+            }
             return Ok(buildings);
         }
 
-        // GET: api/Buildings/5
+        // GET: api/Complex/5
+        [CacheOutput(ClientTimeSpan = 60)]
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            return Ok();
+            var building = sindcoDbContext.Buildings.Find(id);
+            if (building == null)
+            {
+                return BadRequest("No record found.");
+            }
+            return Ok(building);
         }
 
-        // POST: api/Buildings
-        public IHttpActionResult Post([FromBody]string value)
+        // POST: api/Complex
+        [HttpPost]
+        public IHttpActionResult Post([FromBody] Building building)
         {
-            return Ok();
+            sindcoDbContext.Buildings.Add(building);
+            try
+            {
+                sindcoDbContext.SaveChanges();
+                return Ok("The building was created successfully.");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+                return BadRequest("The building was not created.");
+            }
         }
 
-        // PUT: api/Buildings/5
-        public IHttpActionResult Put(int id, [FromBody]string value)
+        // PUT: api/Complex/5
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody] Building building)
         {
-            return Ok();
+            var entity = sindcoDbContext.Buildings.FirstOrDefault(x => x.Id == id);
+            if (entity == null)
+            {
+                return BadRequest("No record found.");
+            }
+
+            entity.Name = building.Name;
+            entity.Status = building.Status;
+            entity.StatusById = building.StatusById;
+            entity.StatusDate = building.StatusDate;
+            entity.AddressLine1 = building.AddressLine1;
+            entity.AddressLine2 = building.AddressLine2;
+            entity.City = building.City;
+            entity.County = building.County;
+            entity.Country = building.Country;
+            entity.PostCode = building.PostCode;
+            entity.BlockId = building.BlockId;
+
+            try
+            {
+                sindcoDbContext.SaveChanges();
+                return Ok("The building was edited successfully.");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+                return BadRequest("The building was not edited.");
+            }
         }
 
-        // DELETE: api/Buildings/5
+        // DELETE: api/Complex/5
+        [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            return Ok();
+            var building = sindcoDbContext.Buildings.Find(id);
+            if (building == null)
+            {
+                return BadRequest("No record found.");
+            }
+            sindcoDbContext.Buildings.Remove(building);
+            try
+            {
+                sindcoDbContext.SaveChanges();
+                return Ok("The building was deleted successfully.");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+                return BadRequest("The building was not deleted.");
+            }
         }
     }
 }

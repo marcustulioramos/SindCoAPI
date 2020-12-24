@@ -238,6 +238,10 @@
     <Compile Include="Migrations\202012232001015_byIdToString.Designer.cs">
       <DependentUpon>202012232001015_byIdToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012241050175_ModelsOk.cs" />
+    <Compile Include="Migrations\202012241050175_ModelsOk.Designer.cs">
+      <DependentUpon>202012241050175_ModelsOk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -351,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012232001015_byIdToString.resx">
       <DependentUpon>202012232001015_byIdToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012241050175_ModelsOk.resx">
+      <DependentUpon>202012241050175_ModelsOk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

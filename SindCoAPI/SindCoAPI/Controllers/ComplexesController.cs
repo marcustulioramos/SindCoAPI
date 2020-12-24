@@ -75,7 +75,6 @@ namespace SindCoAPI.Controllers
             }
             
             entity.Name = complex.Name;
-            entity.CreatedById = complex.CreatedById;
             entity.Status = complex.Status;
             entity.StatusById = complex.StatusById;
             entity.StatusDate = complex.StatusDate;
